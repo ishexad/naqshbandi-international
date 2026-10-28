@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Naqshbandi International</title>
+<meta name="description" content="Pakistani exporter of rice, mangoes, citrus, potatoes, henna powder and pink Himalayan salt for importers, wholesalers and brand owners. Request a quote.">
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root { color-scheme: light; }
+[hidden] { display: none !important; }
+/* Layout concept: a trade sheet. Ruled, ledger-like rows, sample-tag captions on photos,
+   one green for action, amber used only for the small highlight tags.
+   Brand name lives in the CONFIG block at the bottom of the file, so a new trading name is a one-line change. */
+:root {
+  --bg: #f5f7f3;
+  --surface: #ffffff;
+  --tint: #e8eee4;
+  --ink: #17231b;
+  --muted: #55665a;
+  --line: #d8e0d6;
+  --line-strong: #aebcaf;
+  --green: #3a6a1f;
+  --on-green: #ffffff;
+  --amber: #b87908;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1612; --surface: #161f19; --tint: #1b261e; --ink: #e8efe7; --muted: #9db0a2;
+    --line: #27352b; --line-strong: #3d5043; --green: #93c765; --on-green: #0f1612; --amber: #e8ad3a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1612; --surface: #161f19; --tint: #1b261e; --ink: #e8efe7; --muted: #9db0a2;
+  --line: #27352b; --line-strong: #3d5043; --green: #93c765; --on-green: #0f1612; --amber: #e8ad3a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1200px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mono { font-family: var(--font-mono); }
+.kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); font-weight: 500; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 6px; border: 1px solid transparent;
+  font-family: var(--font-body); font-size: 15px; font-weight: 600; line-height: 1.2;
+  text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--green); color: var(--on-green); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-small { padding: 9px 14px; font-size: 14px; }
+.link-btn {
+  font-family: var(--font-body); font-size: 15px; font-weight: 600; color: var(--green);
+  text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; width: fit-content;
+}
+.link-btn:hover { color: var(--ink); }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; gap: 24px; height: 66px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+.logo-tile { width: 42px; height: 42px; flex: none; background: #ffffff; border: 1px solid var(--line); border-radius: 8px; display: grid; place-items: center; }
+.logo-tile img { height: 32px; width: auto; }
+.brand-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav { display: flex; gap: 26px; margin-left: auto; font-size: 14.5px; font-weight: 500; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.site-header .btn { flex: none; }
+@media (max-width: 860px) { .nav { display: none; } .site-header .btn { margin-left: auto; } }
+@media (max-width: 400px) { .brand-name { font-size: 16px; } }
+
+/* Hero */
+.hero { padding-block: 56px 36px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(2.3rem, 5.2vw, 4.1rem); margin-top: 16px; }
+.hero .lead { margin-top: 22px; font-size: 18px; color: var(--muted); max-width: 52ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.hero-note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; aspect-ratio: 1 / 1; max-width: 520px; width: 100%; justify-self: end; }
+.mosaic figure { margin: 0; position: relative; overflow: hidden; border-radius: 6px; min-width: 0; min-height: 0; background: var(--tint); }
+.mosaic figure:first-child { grid-row: span 2; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; }
+.tag {
+  position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 3px;
+  background: var(--bg); color: var(--ink); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .mosaic { justify-self: start; max-width: 480px; }
+  }
+
+/* Sections */
+.section { padding-block: 72px; }
+.section-head { display: grid; gap: 12px; max-width: 62ch; margin-bottom: 36px; }
+.section-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.section-head p { color: var(--muted); font-size: 17px; }
+.band { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+[id] { scroll-margin-top: calc(80px + env(safe-area-inset-top, 0px)); }
+
+/* Product features */
+.feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 44px; padding-block: 40px; border-top: 1px solid var(--line); align-items: start; }
+.feature.rev { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.feature.rev .feature-media { order: 2; }
+.feature-media { margin: 0; }
+.feature-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; background: var(--tint); }
+.feature-body { display: grid; gap: 14px; min-width: 0; align-content: start; }
+.feature-body h3, .card h3 { font-size: 1.7rem; }
+.feature-body p, .card p { color: var(--muted); }
+.table-scroll { overflow-x: auto; margin-top: 6px; }
+table { border-collapse: collapse; width: 100%; min-width: 360px; }
+th { text-align: left; font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--ink); }
+td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+td:first-child { font-weight: 600; }
+td:last-child, th:last-child { text-align: right; padding-right: 0; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; padding-block: 40px; border-top: 1px solid var(--line); }
+.card { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; background: var(--tint); }
+.card h3 { font-size: 1.4rem; }
+.season { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); }
+
+@media (max-width: 900px) {
+  .feature, .feature.rev { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .feature.rev .feature-media { order: 0; }
+  .cards { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}
+
+/* Henna OEM pack designer */
+#products.section { padding-top: 48px; }
+.oem { margin-top: 8px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 36px; align-items: start; }
+.oem h4 { font-family: var(--font-display); font-size: 1.35rem; margin: 0 0 4px; }
+.oem-intro { color: var(--muted); font-size: 15px; margin-bottom: 18px; max-width: 56ch; }
+.oem-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.oem-fields .field.full { grid-column: 1 / -1; }
+fieldset.swatches { border: 0; margin: 0; padding: 0; min-width: 0; }
+fieldset.swatches legend { font-size: 13.5px; font-weight: 600; padding: 0; margin-bottom: 8px; }
+.sw-row { display: flex; flex-wrap: wrap; gap: 10px 14px; }
+.sw { position: relative; display: grid; justify-items: center; gap: 4px; cursor: pointer; width: 64px; }
+.sw input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.sw .dot { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line-strong); }
+.sw input:checked + .dot { outline: 3px solid var(--green); outline-offset: 2px; }
+.sw input:focus-visible + .dot { outline: 3px solid var(--ink); outline-offset: 2px; }
+.sw em { font-style: normal; font-size: 11.5px; color: var(--muted); text-align: center; line-height: 1.25; }
+.logo-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.logo-row input[type="file"] { max-width: 100%; font-size: 14px; }
+.oem-msg { font-size: 13px; color: var(--muted); min-height: 1.4em; }
+.oem-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 18px; }
+.oem-preview { background: var(--tint); border-radius: 8px; padding: 22px 18px 16px; display: grid; justify-items: center; gap: 10px; min-width: 0; }
+.oem-preview svg { width: 100%; max-width: 300px; height: auto; }
+.oem-preview .caption { text-align: center; max-width: 36ch; }
+@media (max-width: 900px) { .oem { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 24px; } }
+@media (max-width: 520px) { .oem-fields { grid-template-columns: minmax(0, 1fr); } }
+
+/* Pink salt: sample bottles */
+.salt-feature { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: center; }
+.bottles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; background: var(--tint); border-radius: 8px; padding: 24px 20px 14px; align-items: end; }
+.bottles figure { margin: 0; display: grid; gap: 6px; justify-items: center; min-width: 0; }
+.bottles img { height: 340px; width: auto; max-width: 100%; object-fit: contain; border-radius: 4px; }
+.bottles .caption { text-align: center; margin-top: 0; }
+@media (max-width: 900px) { .salt-feature { grid-template-columns: minmax(0, 1fr); } .bottles img { height: 280px; } }
+
+/* Packaging */
+.pack-grid { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+.weights { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.weights li { font-family: var(--font-mono); font-size: 15px; font-weight: 500; padding: 9px 16px; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--bg); }
+.pack-copy { display: grid; gap: 16px; }
+.pack-copy p { color: var(--muted); font-size: 17px; max-width: 58ch; }
+
+/* Quality */
+.quality-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.quality-lead { display: grid; gap: 16px; }
+.quality-lead p { color: var(--muted); font-size: 17px; max-width: 54ch; }
+.why { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--ink); }
+.why li { padding: 16px 0; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
+.why strong { font-weight: 600; }
+.why span { color: var(--muted); font-size: 15px; }
+@media (max-width: 900px) { .quality-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+
+/* Process */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+.steps li { border-top: 3px solid var(--green); padding-top: 14px; display: grid; gap: 8px; align-content: start; }
+.steps .mono { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.steps h3 { font-size: 1.2rem; }
+.steps p { color: var(--muted); font-size: 15px; }
+.markets { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; align-items: center; }
+.markets .mono { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.markets span.pill { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; background: var(--surface); }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* Quote */
+.quote-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: start; }
+.rfq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 13.5px; font-weight: 600; }
+.field .opt { color: var(--muted); font-weight: 400; }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line-strong); border-radius: 4px; padding: 10px 12px;
+}
+.field textarea { min-height: 96px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: var(--green); }
+.qty { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 8px; }
+.rfq-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.rfq-actions p { font-size: 13.5px; color: var(--muted); max-width: 48ch; }
+.result { grid-column: 1 / -1; border: 1px solid var(--green); border-radius: 6px; padding: 18px; display: grid; gap: 12px; background: var(--bg); }
+.result h3 { font-size: 1.15rem; }
+.result pre { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 14px; user-select: all; }
+.result-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.result p { font-size: 14px; color: var(--muted); }
+.contact-card { border-top: 2px solid var(--ink); display: grid; }
+.contact-card h3 { font-size: 1.3rem; padding: 16px 0 6px; }
+.contact-row { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.contact-row .mono { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.contact-row .val { overflow-wrap: anywhere; font-weight: 500; }
+.copy-btn { font: inherit; font-size: 13px; font-weight: 600; color: var(--green); background: none; border: 1px solid var(--line-strong); border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+.copy-btn:hover { border-color: var(--green); }
+.contact-note { margin-top: 18px; font-size: 14px; color: var(--muted); max-width: 44ch; }
+@media (max-width: 900px) { .quote-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+@media (max-width: 560px) { .rfq { grid-template-columns: minmax(0, 1fr); } .contact-row { grid-template-columns: 72px minmax(0, 1fr) auto; } }
+
+/* Footer */
+.site-footer { padding-block: 36px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <span class="logo-tile"><img src="img/logo.png" alt="" width="32" height="37"></span>
+      <span class="brand-name" data-brand>Naqshbandi International</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#products">Products</a>
+      <a href="#packaging">Packaging</a>
+      <a href="#quality">Quality</a>
+      <a href="#shipping">Shipping</a>
+      <a href="#quote">Contact</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="#quote">Request a quote</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">Exporters &middot; Faisalabad, Pakistan</span>
+          <h1>Rice, salt, fruit and henna from Pakistan, packed to your order.</h1>
+          <p class="lead">We supply importers, wholesalers and brand owners in the Middle East, Africa and Europe. Send us the product, quantity and packing you need and we will reply with a quote.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#quote">Request a quote</a>
+            <a class="btn btn-ghost" href="#products">See our products</a>
+          </div>
+          <p class="hero-note">Business-to-business only. We do not sell to individual consumers.</p>
+        </div>
+        <div class="mosaic" aria-label="Sample products">
+          <figure><img src="img/rice.jpg" alt="Close-up of long grain white rice" width="360" height="360"><figcaption class="tag">Rice</figcaption></figure>
+          <figure><img src="img/mango.jpg" alt="Ripe yellow mangoes" width="636" height="391"><figcaption class="tag">Mangoes</figcaption></figure>
+          <figure><img src="img/henna.jpg" alt="Henna powder on a spoon" width="570" height="403"><figcaption class="tag">Henna</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What we export</h2>
+      </div>
+
+      <article class="feature" id="rice">
+        <figure class="feature-media"><img src="img/rice.jpg" alt="Long grain white rice" width="360" height="360"></figure>
+        <div class="feature-body">
+          <h3>Rice</h3>
+          <p>Rice is our main business and we have supplied it for over 15 years. We mill long grain, basmati, parboiled and broken rice, and we can offer other grades on request.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th scope="col">Variety</th><th scope="col">Type</th><th scope="col"><span class="sr" style="position:absolute;left:-9999px">Enquire</span></th></tr></thead>
+              <tbody>
+                <tr><td>Super Basmati</td><td>Aromatic long grain</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="Super Basmati">Enquire</a></td></tr>
+                <tr><td>Super Kernel</td><td>Long grain</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="Super Kernel">Enquire</a></td></tr>
+                <tr><td>Sella</td><td>Parboiled</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="Sella">Enquire</a></td></tr>
+                <tr><td>IRRI 6</td><td>Long grain, non-basmati</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="IRRI 6">Enquire</a></td></tr>
+                <tr><td>IRRI 9</td><td>Long grain, non-basmati</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="IRRI 9">Enquire</a></td></tr>
+                <tr><td>Broken rice</td><td>Broken</td><td><a class="link-btn enquire" href="#quote" data-product="Rice" data-grade="Broken">Enquire</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <div class="cards">
+        <article class="card" id="mangoes">
+          <img src="img/mango.jpg" alt="Ripe yellow mangoes" width="636" height="391" loading="lazy">
+          <span class="season">Summer season</span>
+          <h3>Mangoes</h3>
+          <p>Fresh mangoes for importers and wholesalers. Tell us the variety, size and packing you need.</p>
+          <a class="link-btn enquire" href="#quote" data-product="Mangoes">Enquire about mangoes</a>
+        </article>
+        <article class="card" id="citrus">
+          <img src="img/citrus.jpg" alt="Kinnow oranges on the tree" width="350" height="283" loading="lazy">
+          <span class="season">Winter season</span>
+          <h3>Citrus</h3>
+          <p>Kinnow and oranges. Tell us the grade, size and packing you need.</p>
+          <a class="link-btn enquire" href="#quote" data-product="Citrus">Enquire about citrus</a>
+        </article>
+        <article class="card" id="potatoes">
+          <img src="img/potatoes.jpg" alt="Potatoes in a box" width="535" height="402" loading="lazy">
+          <span class="season">Fresh produce</span>
+          <h3>Potatoes</h3>
+          <p>Red potatoes. Tell us the size and packing you need and we will confirm current availability.</p>
+          <a class="link-btn enquire" href="#quote" data-product="Potatoes">Enquire about potatoes</a>
+        </article>
+      </div>
+
+      <article class="feature rev" id="henna">
+        <div class="feature-body">
+          <h3>Henna powder</h3>
+          <p>Henna powder supplied to your packing requirement, or under your own brand as OEM. Design a sample pack below and send it to us with your enquiry.</p>
+          <a class="link-btn enquire" href="#quote" data-product="Henna powder">Enquire about henna powder</a>
+        </div>
+        <figure class="feature-media"><img src="img/henna.jpg" alt="Henna powder on a spoon" width="570" height="403" loading="lazy"></figure>
+      </article>
+
+      <div class="oem" id="henna-pack">
+        <div>
+          <h4>Design your henna pack</h4>
+          <p class="oem-intro">Type your brand name, choose a colour and add your logo. The preview updates as you go. This is a sample, and the final artwork is prepared with our design team.</p>
+          <div class="oem-fields">
+            <div class="field"><label for="o-brand">Brand name</label><input id="o-brand" type="text" maxlength="28" value="Your Brand" autocomplete="off"></div>
+            <div class="field"><label for="o-line">Line under the name</label><input id="o-line" type="text" maxlength="34" value="Natural Henna Powder" autocomplete="off"></div>
+            <div class="field"><label for="o-weight">Net weight</label><input id="o-weight" type="text" maxlength="14" value="1 kg" list="o-weights" autocomplete="off"><datalist id="o-weights"><option value="1 kg"><option value="2 kg"><option value="5 kg"><option value="10 kg"><option value="20 kg"><option value="50 kg"></datalist></div>
+            <div class="field">
+              <label for="o-logo">Your logo <span class="opt">(optional)</span></label>
+              <div class="logo-row">
+                <input id="o-logo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+                <button class="copy-btn" type="button" id="o-logo-clear" hidden>Remove logo</button>
+              </div>
+            </div>
+            <div class="field full"><fieldset class="swatches">
+              <legend>Pack colour</legend>
+              <div class="sw-row">
+                <label class="sw"><input type="radio" name="o-color" value="#3f6a2b" data-name="Henna green" checked><span class="dot" style="background:#3f6a2b"></span><em>Henna green</em></label>
+                <label class="sw"><input type="radio" name="o-color" value="#5a3420" data-name="Mehndi brown"><span class="dot" style="background:#5a3420"></span><em>Mehndi brown</em></label>
+                <label class="sw"><input type="radio" name="o-color" value="#22282b" data-name="Charcoal"><span class="dot" style="background:#22282b"></span><em>Charcoal</em></label>
+                <label class="sw"><input type="radio" name="o-color" value="#7a2332" data-name="Burgundy"><span class="dot" style="background:#7a2332"></span><em>Burgundy</em></label>
+                <label class="sw"><input type="radio" name="o-color" value="#efe6d2" data-name="Cream"><span class="dot" style="background:#efe6d2"></span><em>Cream</em></label>
+              </div>
+            </fieldset></div>
+          </div>
+          <p class="oem-msg" id="o-msg" aria-live="polite"></p>
+          <div class="oem-actions">
+            <a class="btn btn-primary" href="#quote" id="use-design">Use this design in my enquiry</a>
+            <span class="caption" style="margin:0">Your logo file is not uploaded. Email it to us with your enquiry.</span>
+          </div>
+        </div>
+        <figure class="oem-preview" style="margin:0">
+          <svg id="pouch" viewBox="0 0 300 430" role="img" aria-label="Preview of a henna powder pouch with your branding" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.24"/>
+                <stop offset="0.22" stop-color="#ffffff" stop-opacity="0.03"/>
+                <stop offset="0.8" stop-color="#000000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000000" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="150" cy="416" rx="120" ry="8" fill="#000000" opacity="0.16"/>
+            <path id="p-body" d="M34 28 H266 L282 392 Q150 414 18 392 Z" fill="#3f6a2b"/>
+            <path d="M34 28 H266 L282 392 Q150 414 18 392 Z" fill="url(#gloss)"/>
+            <rect x="35" y="28" width="230" height="30" fill="#000000" opacity="0.16"/>
+            <path d="M35 36 H265 M35 44 H265 M35 52 H265" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1"/>
+            <rect x="132" y="35" width="36" height="9" rx="4.5" fill="#e8eee4" opacity="0.9"/>
+            <path d="M33 78 H267" stroke="#000000" stroke-opacity="0.25" stroke-width="2"/>
+            <g id="p-leaf" fill="#ffffff" opacity="0.9">
+              <path d="M150 162 C118 150 116 110 150 94 C184 110 182 150 150 162 Z"/>
+              <path d="M112 150 C94 138 96 114 118 106 C126 124 124 142 112 150 Z" opacity="0.7"/>
+              <path d="M188 150 C206 138 204 114 182 106 C174 124 176 142 188 150 Z" opacity="0.7"/>
+            </g>
+            <image id="p-logo" x="85" y="90" width="130" height="76" preserveAspectRatio="xMidYMid meet" hidden="hidden"/>
+            <text id="p-brand" x="150" y="224" text-anchor="middle" font-family="'Bricolage Grotesque','Segoe UI',system-ui,sans-serif" font-weight="700" font-size="40" fill="#ffffff">Your Brand</text>
+            <path id="p-rule" d="M112 240 H188" stroke="#ffffff" stroke-width="2"/>
+            <text id="p-line" x="150" y="266" text-anchor="middle" font-family="'Instrument Sans','Segoe UI',system-ui,sans-serif" font-weight="600" font-size="15" letter-spacing="1.5" fill="#ffffff">NATURAL HENNA POWDER</text>
+            <text id="p-sample" x="150" y="324" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#ffffff" opacity="0.6">SAMPLE DESIGN</text>
+            <text id="p-weight" x="150" y="372" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-weight="500" font-size="14" fill="#ffffff">NET WT. 1 kg</text>
+          </svg>
+          <figcaption class="caption">Sample pouch preview. Final pack shape, size and print are confirmed with our team.</figcaption>
+        </figure>
+      </div>
+
+      <article class="feature salt-feature" id="salt">
+        <div class="bottles">
+          <figure><img src="img/jar.jpg" alt="Sample jar of pink Himalayan rock salt with a dark floral label and the placeholder brand NAQSH" width="537" height="1073" loading="lazy"><figcaption class="caption">Sample jar</figcaption></figure>
+          <figure><img src="img/grinder.jpg" alt="Sample salt grinder bottle of pink Himalayan salt with a placeholder where your brand name goes" width="353" height="1000" loading="lazy"><figcaption class="caption">Sample grinder bottle</figcaption></figure>
+        </div>
+        <div class="feature-body">
+          <h3>Pink Himalayan salt</h3>
+          <p>Pink Himalayan rock salt in jars and grinder bottles, packed under your own brand. The labels shown are samples. Your brand name goes here, and our team designs the artwork with you.</p>
+          <a class="link-btn enquire" href="#quote" data-product="Pink Himalayan salt">Enquire about pink Himalayan salt</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section band" id="packaging">
+    <div class="wrap">
+      <div class="pack-grid">
+        <div class="pack-copy">
+          <span class="kicker">Packaging and private label</span>
+          <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Packed the way you sell it</h2>
+          <p>We pack to each customer's requirement. Our in-house team designs customer logos and pack artwork, so you can send us a brand idea and receive a design to approve.</p>
+          <p>The weights we usually pack in:</p>
+          <ul class="weights" aria-label="Usual pack weights">
+            <li>1 kg</li><li>2 kg</li><li>5 kg</li><li>10 kg</li><li>20 kg</li><li>50 kg</li>
+          </ul>
+          <p style="margin-top:8px"><a class="link-btn enquire" href="#quote" data-product="Private label packing">Ask about private label</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quality">
+    <div class="wrap">
+      <div class="quality-grid">
+        <div class="quality-lead">
+          <span class="kicker">Quality</span>
+          <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Checked against international standards</h2>
+          <p>We run a monitoring system that keeps our products in line with international quality standards.</p>
+          <p>Every market asks for different documents and test reports. Tell us what yours requires and we will confirm what we can provide with your order.</p>
+        </div>
+        <ul class="why">
+          <li><strong>Over 15 years in business</strong><span>We have milled and exported rice for more than 15 years.</span></li>
+          <li><strong>Customer trust</strong><span>We have earned the trust of customers in the Middle East, Africa and Europe over the years.</span></li>
+          <li><strong>Quality and price</strong><span>We aim to give you a product and a price that are hard to match.</span></li>
+          <li><strong>Your brand, designed in house</strong><span>Logos and pack designs are made by our own team.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="shipping">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Shipping and terms</span>
+        <h2>How an order works</h2>
+        <p>Tell us your preferred terms, such as FOB or CIF, and your destination port on the enquiry form. We will confirm what we can offer.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="mono">Step 1</span><h3>Send an enquiry</h3><p>Product, grade, quantity, packing and destination port.</p></li>
+        <li><span class="mono">Step 2</span><h3>Receive our quote</h3><p>We reply with price and terms for your order.</p></li>
+        <li><span class="mono">Step 3</span><h3>Confirm packing</h3><p>Choose pack weights, or send your logo for private label.</p></li>
+        <li><span class="mono">Step 4</span><h3>Pack and ship</h3><p>We pack to your specification and ship to your port.</p></li>
+      </ol>
+      <div class="markets">
+        <span class="mono">We ship to</span>
+        <span class="pill">Middle East</span><span class="pill">Africa</span><span class="pill">Europe</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quote">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Request a quote</span>
+        <h2>Tell us what you need</h2>
+        <p>The more detail you give, the faster we can quote. Fields marked optional can be left blank.</p>
+      </div>
+      <div class="quote-grid">
+        <form class="rfq" id="rfq" novalidate>
+          <div class="field"><label for="f-company">Company name</label><input id="f-company" name="company" type="text" autocomplete="organization" required></div>
+          <div class="field"><label for="f-contact">Your name</label><input id="f-contact" name="contact" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Phone or WhatsApp <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-country">Country</label><input id="f-country" name="country" type="text" autocomplete="country-name" required></div>
+          <div class="field">
+            <label for="f-product">Product</label>
+            <select id="f-product" name="product" required>
+              <option value="">Choose a product</option>
+              <option>Rice</option>
+              <option>Mangoes</option>
+              <option>Citrus</option>
+              <option>Potatoes</option>
+              <option>Henna powder</option>
+              <option>Pink Himalayan salt</option>
+              <option>Private label packing</option>
+              <option>More than one product</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-grade">Variety or grade <span class="opt">(optional)</span></label><input id="f-grade" name="grade" type="text" placeholder="For example, Super Basmati"></div>
+          <div class="field">
+            <label for="f-qty">Quantity</label>
+            <div class="qty">
+              <input id="f-qty" name="qty" type="number" min="0" step="any" inputmode="decimal" required>
+              <select id="f-unit" name="unit" aria-label="Quantity unit">
+                <option>tonnes</option>
+                <option>kg</option>
+                <option>20 ft containers</option>
+                <option>40 ft containers</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-pack">Packing <span class="opt">(optional)</span></label>
+            <select id="f-pack" name="pack">
+              <option value="">Not decided</option>
+              <option>1 kg</option><option>2 kg</option><option>5 kg</option><option>10 kg</option><option>20 kg</option><option>50 kg</option>
+              <option>Private label, my own design</option>
+              <option>Private label, please design for me</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-port">Destination port <span class="opt">(optional)</span></label><input id="f-port" name="port" type="text"></div>
+          <div class="field">
+            <label for="f-terms">Preferred terms <span class="opt">(optional)</span></label>
+            <select id="f-terms" name="terms">
+              <option value="">Not sure</option>
+              <option>FOB</option><option>CFR</option><option>CIF</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-notes">Anything else <span class="opt">(optional)</span></label><textarea id="f-notes" name="notes" placeholder="Target delivery date, required documents, samples, other products"></textarea></div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+          <div class="rfq-actions">
+            <button class="btn btn-primary" type="submit">Prepare my enquiry</button>
+            <p>This preview page cannot send email. It prepares your enquiry so you can copy it and email it to us.</p>
+          </div>
+          <div class="result" id="result" hidden aria-live="polite">
+            <h3>Your enquiry is ready</h3>
+            <pre id="result-text"></pre>
+            <div class="result-actions">
+              <button class="btn btn-primary btn-small" type="button" id="copy-enquiry">Copy enquiry</button>
+              <a class="btn btn-ghost btn-small" id="mailto" href="#">Try opening my email app</a>
+            </div>
+            <p>Nothing has been sent yet. Use the button above to open your email app, or copy the enquiry and email it to us.</p>
+          </div>
+        </form>
+
+        <aside class="contact-card" aria-label="Contact details">
+          <h3 data-legal>Naqshbandi International</h3>
+          <div class="contact-row"><span class="mono">Address</span><span class="val">Office 66-67, Bismillah Market, Opp Islamia College, Sargodha Road, Faisalabad, Pakistan</span><span></span></div>
+                    <div class="contact-row"><span class="mono">Mobile</span><span class="val">+92 300 7675017</span><button class="copy-btn" type="button" data-copy="+92 300 7675017">Copy</button></div>
+          <div class="contact-row"><span class="mono">Office</span><span class="val">+92 41 8848915</span><button class="copy-btn" type="button" data-copy="+92 41 8848915">Copy</button></div>
+          <div class="contact-row"><span class="mono">Fax</span><span class="val">+92 41 8848916</span><span></span></div>
+          <p class="contact-note">Pakistan is on UTC+5. Please allow for the time difference when you call.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> <span data-legal>Naqshbandi International</span>. Faisalabad, Pakistan.</span>
+    <span>Business-to-business sales only.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* CONFIG: change the trading name here once the new brand is chosen.
+     "legal" stays as the registered business name in the contact card and footer. */
+  var CONFIG = {
+    trading: "Naqshbandi International",
+    legal: "Naqshbandi International",
+    email: "ishexad@gmail.com", /* fallback only: used for the "open my email app" button. Clear it once formEndpoint is set. */
+    formEndpoint: "" /* paste your Formspree URL here, for example https://formspree.io/f/xxxxxxxx */
+  };
+
+  document.title = CONFIG.trading;
+  [].forEach.call(document.querySelectorAll("[data-brand]"), function (el) { el.textContent = CONFIG.trading; });
+  [].forEach.call(document.querySelectorAll("[data-legal]"), function (el) { el.textContent = CONFIG.legal; });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  function copyText(text, btn) {
+    var original = btn.textContent;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = original; }, 1600); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) { done(); } else { btn.textContent = "Select and copy"; setTimeout(function () { btn.textContent = original; }, 2200); }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  }
+
+  [].forEach.call(document.querySelectorAll(".copy-btn"), function (b) {
+    b.addEventListener("click", function () { copyText(b.getAttribute("data-copy"), b); });
+  });
+
+  var product = document.getElementById("f-product");
+  var grade = document.getElementById("f-grade");
+  [].forEach.call(document.querySelectorAll(".enquire"), function (a) {
+    a.addEventListener("click", function () {
+      var p = a.getAttribute("data-product");
+      var g = a.getAttribute("data-grade");
+      for (var i = 0; i < product.options.length; i++) {
+        if (product.options[i].text === p) { product.selectedIndex = i; break; }
+      }
+      grade.value = g || "";
+    });
+  });
+
+  var form = document.getElementById("rfq");
+  var result = document.getElementById("result");
+  var out = document.getElementById("result-text");
+  var mailto = document.getElementById("mailto");
+  var copyBtn = document.getElementById("copy-enquiry");
+
+  function val(id) { return (document.getElementById(id).value || "").trim(); }
+
+  var resultTitle = result.querySelector("h3");
+  var resultActions = result.querySelector(".result-actions");
+  var resultNote = result.querySelector("p");
+  var formNote = document.querySelector(".rfq-actions p");
+  var submitBtn = form.querySelector('button[type="submit"]');
+  if (CONFIG.formEndpoint) { submitBtn.textContent = "Send enquiry"; if (formNote) { formNote.textContent = "We reply to the email address you give us."; } }
+  var submitLabel = submitBtn.textContent;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (form.elements["_gotcha"] && form.elements["_gotcha"].value) { return; }
+    var fields = {
+      company: val("f-company"), contact: val("f-contact"), email: val("f-email"), phone: val("f-phone") || "-",
+      country: val("f-country"), product: val("f-product"), grade: val("f-grade") || "-",
+      quantity: val("f-qty") + " " + val("f-unit"), packing: val("f-pack") || "Not decided",
+      port: val("f-port") || "-", terms: val("f-terms") || "Not sure", notes: val("f-notes") || "-"
+    };
+    var text = [
+      "Request for quote", "",
+      "Company: " + fields.company, "Contact: " + fields.contact, "Email: " + fields.email,
+      "Phone or WhatsApp: " + fields.phone, "Country: " + fields.country, "",
+      "Product: " + fields.product, "Variety or grade: " + fields.grade, "Quantity: " + fields.quantity,
+      "Packing: " + fields.packing, "Destination port: " + fields.port, "Preferred terms: " + fields.terms, "",
+      "Notes: " + fields.notes
+    ].join("\n");
+    var subject = "Request for quote: " + fields.product + " - " + fields.company;
+
+    function showPrepared() {
+      out.textContent = text;
+      resultTitle.textContent = "Your enquiry is ready";
+      resultActions.hidden = false;
+      if (CONFIG.email) {
+        mailto.hidden = false;
+        mailto.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+      } else { mailto.hidden = true; }
+      copyBtn.onclick = function () { copyText(text, copyBtn); };
+      resultNote.textContent = CONFIG.formEndpoint
+        ? "We could not send this automatically. Nothing has been sent yet. Please copy the enquiry and email it to us."
+        : "Nothing has been sent yet. Use the button above to open your email app, or copy the enquiry and email it to us.";
+      result.hidden = false;
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    function showSent() {
+      out.textContent = text;
+      resultTitle.textContent = "Thank you, we have your enquiry";
+      resultActions.hidden = true;
+      resultNote.textContent = "We will reply to " + fields.email + ".";
+      result.hidden = false;
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      form.reset();
+    }
+
+    if (!CONFIG.formEndpoint) { showPrepared(); return; }
+    submitBtn.disabled = true; submitBtn.textContent = "Sending...";
+    var payload = {}; for (var k in fields) { payload[k] = fields[k]; }
+    payload._subject = subject;
+    fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (r) { if (!r.ok) { throw new Error("send failed"); } showSent(); })
+      .catch(function () { showPrepared(); })
+      .then(function () { submitBtn.disabled = false; submitBtn.textContent = submitLabel; });
+  });
+  /* Henna OEM pack designer */
+  (function () {
+    var brandIn = document.getElementById("o-brand");
+    var lineIn = document.getElementById("o-line");
+    var weightIn = document.getElementById("o-weight");
+    var logoIn = document.getElementById("o-logo");
+    var logoClear = document.getElementById("o-logo-clear");
+    var msg = document.getElementById("o-msg");
+    var body = document.getElementById("p-body");
+    var tBrand = document.getElementById("p-brand");
+    var tLine = document.getElementById("p-line");
+    var tWeight = document.getElementById("p-weight");
+    var tSample = document.getElementById("p-sample");
+    var rule = document.getElementById("p-rule");
+    var leaf = document.getElementById("p-leaf");
+    var logoImg = document.getElementById("p-logo");
+    var logoData = "";
+
+    function checkedColor() { return document.querySelector('input[name="o-color"]:checked'); }
+    function luminance(hex) {
+      var n = parseInt(hex.slice(1), 16), r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+      return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+    }
+    function fit(el, text, size, maxWidth, factor) {
+      el.setAttribute("font-size", size);
+      if (text.length * size * factor > maxWidth) {
+        el.setAttribute("textLength", maxWidth);
+        el.setAttribute("lengthAdjust", "spacingAndGlyphs");
+      } else { el.removeAttribute("textLength"); el.removeAttribute("lengthAdjust"); }
+    }
+    function render() {
+      var c = checkedColor();
+      var hex = c ? c.value : "#3f6a2b";
+      var ink = luminance(hex) > 0.6 ? "#1b2a1d" : "#ffffff";
+      body.setAttribute("fill", hex);
+      [tBrand, tLine, tWeight, tSample, leaf].forEach(function (el) { el.setAttribute("fill", ink); });
+      rule.setAttribute("stroke", ink);
+      var brand = brandIn.value.trim() || "Your Brand";
+      var line = (lineIn.value.trim() || "Henna Powder").toUpperCase();
+      var weight = weightIn.value.trim() || "1 kg";
+      tBrand.textContent = brand;
+      tLine.textContent = line;
+      tWeight.textContent = "NET WT. " + weight;
+      var size = brand.length <= 8 ? 40 : Math.max(20, 40 - (brand.length - 8) * 1.6);
+      fit(tBrand, brand, size, 220, 0.56);
+      fit(tLine, line, 15, 226, 0.66);
+      if (logoData) { logoImg.setAttribute("href", logoData); logoImg.hidden = false; leaf.style.display = "none"; logoClear.hidden = false; }
+      else { logoImg.removeAttribute("href"); logoImg.hidden = true; leaf.style.display = ""; logoClear.hidden = true; }
+    }
+    [brandIn, lineIn, weightIn].forEach(function (el) { el.addEventListener("input", render); });
+    [].forEach.call(document.querySelectorAll('input[name="o-color"]'), function (el) { el.addEventListener("change", render); });
+    logoIn.addEventListener("change", function () {
+      var f = logoIn.files && logoIn.files[0];
+      msg.textContent = "";
+      if (!f) { return; }
+      if (f.size > 3 * 1024 * 1024) { msg.textContent = "That logo file is over 3 MB. Please choose a smaller one."; logoIn.value = ""; return; }
+      var r = new FileReader();
+      r.onload = function () { logoData = String(r.result); render(); };
+      r.onerror = function () { msg.textContent = "We could not read that file. Please try a PNG or JPG."; };
+      r.readAsDataURL(f);
+    });
+    logoClear.addEventListener("click", function () { logoData = ""; logoIn.value = ""; msg.textContent = ""; render(); });
+
+    document.getElementById("use-design").addEventListener("click", function () {
+      var c = checkedColor();
+      var summary = "Henna OEM pack design: brand \"" + (brandIn.value.trim() || "Your Brand") + "\", line \"" +
+        (lineIn.value.trim() || "Henna Powder") + "\", net weight " + (weightIn.value.trim() || "1 kg") +
+        ", colour " + (c ? c.getAttribute("data-name") : "Henna green") + ", logo " + (logoData ? "to follow by email" : "none") + ".";
+      var prod = document.getElementById("f-product");
+      for (var i = 0; i < prod.options.length; i++) { if (prod.options[i].text === "Henna powder") { prod.selectedIndex = i; break; } }
+      var pk = document.getElementById("f-pack");
+      for (var j = 0; j < pk.options.length; j++) { if (pk.options[j].text === "Private label, my own design") { pk.selectedIndex = j; break; } }
+      document.getElementById("f-grade").value = "";
+      var notes = document.getElementById("f-notes");
+      var kept = notes.value.split("\n").filter(function (l) { return l.indexOf("Henna OEM pack design:") !== 0; }).join("\n").trim();
+      notes.value = (kept ? kept + "\n" : "") + summary;
+    });
+    render();
+  })();
+})();
+</script>
+</body>
+</html>
